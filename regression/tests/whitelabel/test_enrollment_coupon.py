@@ -2,15 +2,13 @@
 Single course Enrollment coupons tests
 """
 import random
-from unittest import skip, skipIf
 
 from regression.pages.studio.utils import get_course_key
 from regression.pages.whitelabel import (
     COURSE_ORG,
     COURSE_NUMBER,
     COURSE_RUN,
-    DEFAULT_COURSE_PRICE,
-    TEST_ENV
+    DEFAULT_COURSE_PRICE
 )
 from regression.pages.whitelabel.const import PASSWORD
 from regression.pages.whitelabel.redeem_coupon_page import RedeemCouponPage
@@ -88,7 +86,6 @@ class TestEnrollmentCoupon(VouchersTest):
             self.enroll_using_enrollment_code(coupon_code)
             self.assert_enrollment_and_logout()
 
-    @skipIf(TEST_ENV == "stage", "skip tests on stage")
     def test_enrollment_once_per_customer_code_max_limit(self):
         """
         Scenario: Enrollment Once Per Customer - Code Max Limit: Each code can
@@ -124,7 +121,6 @@ class TestEnrollmentCoupon(VouchersTest):
                     ONCE_PER_CUSTOMER_CODE_MAX_LIMIT
                 )
 
-    @skipIf(TEST_ENV == "stage", "skip tests on stage")
     def test_enrollment_single_use_code_future(self):
         """
         Scenario: Enrollment Single Use Code: Relevant error message is
@@ -152,7 +148,6 @@ class TestEnrollmentCoupon(VouchersTest):
             FUTURE_CODE_ERROR.format(coupon_code)
         )
 
-    @skipIf(TEST_ENV == "stage", "skip tests on stage")
     def test_apply_enrollment_single_use_redeem_url(self):
         """
         Scenario: Enrollment Single Use Redeem URL: URL cannot be reused
@@ -190,7 +185,6 @@ class TestEnrollmentCoupon(VouchersTest):
             SINGLE_USE_REDEEM_URL_REUSE_ERROR
         )
 
-    @skip("test case modification in progress")
     def test_enrollment_once_per_customer_redeem_url_email_domain(self):
         """
         Scenario: Enrollment Once Per Customer URL: URL can be used only by
@@ -224,7 +218,6 @@ class TestEnrollmentCoupon(VouchersTest):
             INVALID_DOMAIN_ERROR_MESSAGE_ON_REDEEM_URL
         )
 
-    @skipIf(TEST_ENV == "stage", "skip tests on stage")
     def test_enrollment_once_per_customer_redeem_url_expired(self):
         """
         Scenario: Enrollment Once Per Customer Redeem URL: Relevant error
